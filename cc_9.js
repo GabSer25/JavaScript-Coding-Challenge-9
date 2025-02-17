@@ -73,4 +73,20 @@ company.addEmployee(mgr1);
 
 company.listEmployees(); // Should list both employees
 
+// Task 4 - Implementing a Payroll System
+// Add the calculateTotalPayroll method to the existing Company class
+Company.prototype.calculateTotalPayroll = function() {
+    return this.employees.reduce((total, emp) => {
+        let annualSalary = emp.calculateAnnualSalary(); // Get annual salary
+
+        if (emp instanceof Manager) {
+            annualSalary += emp.calculateBonus(); // Add bonus if the employee is a manager
+        }
+
+        return total + annualSalary; // Accumulate total payroll
+    }, 0);
+};
+
+// Output the total payroll of the company
+console.log(company.calculateTotalPayroll()); // Expected Output: 172800
 
