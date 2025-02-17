@@ -90,3 +90,21 @@ Company.prototype.calculateTotalPayroll = function() {
 // Output the total payroll of the company
 console.log(company.calculateTotalPayroll()); // Expected Output: 172800
 
+// Task 5 - Implementing Promotion 
+// Add the promoteToManager method to the existing Company class
+Company.prototype.promoteToManager = function(employee, teamSize) {
+    // Remove the employee from the list
+    this.employees = this.employees.filter(emp => emp !== employee);
+
+    // Create a new Manager with the same details and assign a team size
+    const newManager = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize);
+    
+    // Add the new Manager back to the company
+    this.addEmployee(newManager);
+};
+
+// Promote Alice to a Manager with a team size of 3
+company.promoteToManager(emp1, 3);
+
+// List all employees to verify the promotion
+company.listEmployees(); // Expected output: Alice is now a Manager
